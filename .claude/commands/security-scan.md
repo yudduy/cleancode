@@ -21,25 +21,44 @@ Scan entire codebase for:
 
 ## Process
 
-### 1. Use Security-Auditor Agent
+### 1. Use Security Audit Subagent
 
 ```
-Use security-auditor subagent for comprehensive audit.
+subagent_type: "general-purpose"
+description: "Comprehensive security audit"
+prompt: "Perform comprehensive OWASP Top 10 security audit of the entire codebase.
 
-Scan:
-- All API routes
-- All database queries
-- All authentication code
-- All user input handling
-- All Web3/crypto code
+Scan all:
+- API routes (app/api/, pages/api/, routes/, endpoints/)
+- Database queries (SQL, ORM usage)
+- Authentication/authorization code
+- User input handling and validation
+- Web3/crypto operations (if present)
 - Configuration files
 - Environment variables usage
 
-Return detailed security report with:
-- Vulnerabilities categorized by severity
-- OWASP mapping
-- Code examples
-- Remediation steps
+For each vulnerability found, provide:
+- Severity: 🔥 CRITICAL / ⚠️ HIGH / 📝 MEDIUM / 💡 LOW
+- OWASP category (A01-A10)
+- File location (file:line)
+- Vulnerable code snippet
+- Exploit scenario (how it could be exploited)
+- Fix/remediation code
+- Impact assessment
+
+Focus on:
+1. SQL Injection (A03): Raw queries, string concatenation
+2. XSS (A03): Unsanitized user input in HTML
+3. Broken Access Control (A01): Missing auth checks
+4. Authentication Failures (A07): Weak tokens, poor session management
+5. Cryptographic Failures (A02): Weak crypto, exposed secrets
+6. Security Misconfigurations (A05): Missing headers, default configs
+7. CSRF: Missing tokens in forms
+8. Insecure Dependencies (A06): Outdated packages with CVEs
+9. Logging Failures (A09): Insufficient security logging
+10. SSRF (A10): Unvalidated external requests
+
+Return a comprehensive security report with all findings categorized by severity."
 ```
 
 ### 2. Run Automated Scans

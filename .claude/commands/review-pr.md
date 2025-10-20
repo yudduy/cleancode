@@ -18,16 +18,62 @@ git diff main...HEAD
 
 ### 2. Launch Parallel Review Agents
 
-Use Task tool to launch 3 agents **IN PARALLEL**:
+Use Task tool to launch 3 **general-purpose** subagents **IN PARALLEL**:
 
+**Code Review Agent:**
 ```
-Use code-reviewer, security-auditor, and performance-analyst subagents.
+subagent_type: "general-purpose"
+description: "PR code quality review"
+prompt: "Review the PR diff for code quality issues. Focus ONLY on changed lines.
 
-Each agent should:
-- Analyze the PR diff
-- Focus on changed files only
-- Return categorized findings
+Analyze for:
+- Type safety (any usage, proper generics)
+- Error handling (missing try-catch, null checks)
+- Code organization (SOLID, DRY violations)
+- Naming and clarity
+- Framework best practices
+
+Return findings as:
+🔥 Critical | ⚠️ Warning | 💡 Suggestion
+[File:line] Description + Recommendation"
 ```
+
+**Security Agent:**
+```
+subagent_type: "general-purpose"
+description: "PR security review"
+prompt: "Review the PR diff for security vulnerabilities. Focus ONLY on changed lines.
+
+Check for:
+- SQL injection (raw queries, string concat)
+- XSS (unsanitized input)
+- Auth/authz issues
+- Exposed secrets
+- CSRF risks
+
+Return findings as:
+🔥 Critical | ⚠️ High
+[File:line] Vulnerability type + Fix"
+```
+
+**Performance Agent:**
+```
+subagent_type: "general-purpose"
+description: "PR performance review"
+prompt: "Review the PR diff for performance issues. Focus ONLY on changed lines.
+
+Check for:
+- N+1 queries
+- Missing React optimizations (useMemo, useCallback)
+- Large bundle additions
+- Inefficient algorithms
+
+Return findings as:
+High | Medium | Low Impact
+[File:line] Issue + Optimization"
+```
+
+**Launch all 3 in parallel, wait for results.**
 
 ### 3. Synthesize Findings
 
