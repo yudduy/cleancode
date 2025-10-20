@@ -1,0 +1,75 @@
+{
+  "name": "cleancode",
+  "owner": {
+    "name": "Duy Nguyen",
+    "email": "yudduy@users.noreply.github.com",
+    "url": "https://github.com/yudduy"
+  },
+  "metadata": {
+    "description": "Autonomous code quality system with adaptive skills - works across any tech stack. Review, test, debug, and secure your code automatically.",
+    "version": "1.0.0",
+    "keywords": [
+      "code-review",
+      "testing",
+      "security",
+      "performance",
+      "autonomous",
+      "quality-assurance",
+      "debugging"
+    ],
+    "homepage": "https://github.com/yudduy/cleancode",
+    "repository": "https://github.com/yudduy/cleancode",
+    "license": "MIT"
+  },
+  "plugins": [
+    {
+      "name": "autonomous-quality",
+      "source": "./plugins/autonomous-quality",
+      "description": "Autonomous code quality system with multi-agent review, test automation, security auditing, and performance analysis. Adapts to any tech stack automatically.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Duy Nguyen",
+        "url": "https://github.com/yudduy"
+      },
+      "homepage": "https://github.com/yudduy/cleancode",
+      "repository": "https://github.com/yudduy/cleancode",
+      "license": "MIT",
+      "keywords": [
+        "autonomous",
+        "code-review",
+        "testing",
+        "security-audit",
+        "performance",
+        "quality-loop",
+        "multi-agent"
+      ],
+      "category": "quality-assurance",
+      "strict": false,
+      "agents": [
+        "./agents/code-reviewer.md",
+        "./agents/security-auditor.md",
+        "./agents/test-runner.md",
+        "./agents/performance-analyst.md",
+        "./agents/bug-hunter.md"
+      ],
+      "skills": [
+        "./skills/core/code-quality-fundamentals.md",
+        "./skills/core/security-owasp-top10.md",
+        "./skills/core/performance-principles.md",
+        "./skills/frameworks/nextjs-adaptive.md",
+        "./skills/frameworks/react-adaptive.md",
+        "./skills/languages/typescript-adaptive.md",
+        "./skills/databases/drizzle-adaptive.md",
+        "./skills/testing/vitest-adaptive.md",
+        "./skills/domains/web3-security.md",
+        "./skills/domains/api-security.md"
+      ],
+      "commands": [
+        "./commands/quality-loop.md",
+        "./commands/review-pr.md",
+        "./commands/fix-tests.md",
+        "./commands/security-scan.md"
+      ]
+    }
+  ]
+}
